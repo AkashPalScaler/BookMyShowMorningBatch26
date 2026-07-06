@@ -1,5 +1,5 @@
 package com.scaler.bookmyshowmorning.models;
 
 public enum SeatStatus {
-    BOOKED, AVAILABLE, BLOCKED
+    OPERATIONAL, UN_OPERATIONAL
 }

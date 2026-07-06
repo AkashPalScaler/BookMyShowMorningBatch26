@@ -21,6 +21,7 @@ public class ShowSeat extends BaseModel {
     private ShowSeatStatus showSeatStatus;
     @ManyToOne
     private Booking booking;
+    private Date blockedAt;
 }
 
 

@@ -14,7 +14,7 @@ import java.util.List;
 @SpringBootApplication
 public class BookmyshowMorningApplication implements CommandLineRunner {
 
-    @Autowired
+    @Autowired // Gets injected from the registry
     MovieRepository movieRepository;
 
     public static void main(String[] args) {
