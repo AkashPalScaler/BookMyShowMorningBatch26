@@ -29,6 +29,62 @@ public class Show extends BaseModel {
     private List<ShowSeat> showSeatList;
     @OneToMany(mappedBy = "show")
     private List<ShowSeatType> showSeatTypeList;
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public Theatre getTheatre() {
+        return theatre;
+    }
+
+    public void setTheatre(Theatre theatre) {
+        this.theatre = theatre;
+    }
+
+    public Screen getScreen() {
+        return screen;
+    }
+
+    public void setScreen(Screen screen) {
+        this.screen = screen;
+    }
+
+    public List<ShowSeat> getShowSeatList() {
+        return showSeatList;
+    }
+
+    public void setShowSeatList(List<ShowSeat> showSeatList) {
+        this.showSeatList = showSeatList;
+    }
+
+    public List<ShowSeatType> getShowSeatTypeList() {
+        return showSeatTypeList;
+    }
+
+    public void setShowSeatTypeList(List<ShowSeatType> showSeatTypeList) {
+        this.showSeatTypeList = showSeatTypeList;
+    }
 }
 
 

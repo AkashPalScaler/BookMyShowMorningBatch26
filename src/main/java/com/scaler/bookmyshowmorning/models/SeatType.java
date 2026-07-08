@@ -9,4 +9,19 @@ import lombok.Setter;
 @Entity
 public class SeatType extends BaseModel{
     private String type;
+
+    public SeatType() {
+    }
+
+    public SeatType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

@@ -2,6 +2,7 @@ package com.scaler.bookmyshowmorning.controllers;
 
 import com.scaler.bookmyshowmorning.DTOs.ReserveBookingRequestDTO;
 import com.scaler.bookmyshowmorning.DTOs.ReserveBookingResponseDTO;
+import com.scaler.bookmyshowmorning.DTOs.ResponseStatus;
 import com.scaler.bookmyshowmorning.models.Booking;
 import com.scaler.bookmyshowmorning.models.BookingStatus;
 import com.scaler.bookmyshowmorning.services.BookingService;
@@ -13,7 +14,7 @@ public class BookingController {
     @Autowired
     BookingService bookingService;
 
-    ReserveBookingResponseDTO reserveBooking(ReserveBookingRequestDTO requestDTO){
+    public ReserveBookingResponseDTO reserveBooking(ReserveBookingRequestDTO requestDTO){
         ReserveBookingResponseDTO responseDTO = new ReserveBookingResponseDTO();
         try{
             Booking booking = bookingService.reserveBooking(
@@ -23,11 +24,14 @@ public class BookingController {
             );
             responseDTO.setBookingId(booking.getId());
             responseDTO.setStatus(booking.getBookingStatus());
+            responseDTO.setAmount(booking.getAmount());
             responseDTO.setMessage("Seats reserved successfully for 5 mins, please complete the payment for confirming the booking");
+            responseDTO.setResponseStatus(ResponseStatus.SUCCESS);
         }catch (Exception e){
             System.out.println("Error in reserving seats - " + e.getMessage());
             responseDTO.setStatus(BookingStatus.FAILED);
             responseDTO.setMessage("Failed to reserve seats because of " + e.getMessage());
+            responseDTO.setResponseStatus(ResponseStatus.FAILURE);
         }
         return responseDTO;
     }

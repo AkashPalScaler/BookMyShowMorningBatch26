@@ -1,6 +1,7 @@
 package com.scaler.bookmyshowmorning.services;
 
 import com.scaler.bookmyshowmorning.models.*;
+import com.scaler.bookmyshowmorning.repositories.BookingRepository;
 import com.scaler.bookmyshowmorning.repositories.ShowRepository;
 import com.scaler.bookmyshowmorning.repositories.ShowSeatRepository;
 import com.scaler.bookmyshowmorning.repositories.UserRepository;
@@ -25,6 +26,8 @@ public class BookingService {
     ShowRepository showRepository;
     @Autowired
     ShowSeatRepository showSeatRepository;
+    @Autowired
+    BookingRepository bookingRepository;
 
 
     public Booking reserveBooking(Long userId, Long showId, List<Long> showSeatIds){
@@ -56,7 +59,7 @@ public class BookingService {
         // ---------------- STOP TRANSACTION ------------------
         List<ShowSeat> validShowSeats = checkAndReserveSeats(show, showSeatIds);
         // Calculate price - showSeat - seat(SeatType) -> price
-            // HomeWork
+        // HomeWork
         Integer amount = 200;
         // Create and return the booking
         Booking booking = new Booking();
@@ -65,7 +68,7 @@ public class BookingService {
         booking.setBookingStatus(BookingStatus.IN_PROGRESS);
         booking.setShowSeats(validShowSeats);
         booking.setAmount(amount);
-        return booking;
+        return bookingRepository.save(booking);
     }
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
@@ -83,10 +86,11 @@ public class BookingService {
         // OPTION 2 - Don't throw err but only consider the seats of the show selected
         List<ShowSeat> validShowSeats = new ArrayList<>();
         for(ShowSeat showSeat : showSeats){
-            if(showSeat.getShow().equals(show)) {
+            if(showSeat.getShow().getId().equals(show.getId())) {
                  validShowSeats.add(showSeat);
             }
         }
+        System.out.println("Valid seats : " +  validShowSeats);
         // Check availability of the showSeats
         // If available,
         //          - Lock the seats -  update status(to Locked) and update LockedAt time
@@ -110,7 +114,8 @@ public class BookingService {
                     throw new IllegalArgumentException("Seats selected are already reserved for booking, try again some time later!");
                 }
             }
-            showSeat.setShowSeatStatus(ShowSeatStatus.AVAILABLE);
+            showSeat.setShowSeatStatus(ShowSeatStatus.BLOCKED);
+            showSeat.setBlockedAt(new Date());
 //            showSeatRepository.save(showSeat); // Update one by one
 
         }

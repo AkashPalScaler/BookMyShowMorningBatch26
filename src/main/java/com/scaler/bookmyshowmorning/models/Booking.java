@@ -24,6 +24,54 @@ public class Booking extends BaseModel {
     private List<ShowSeat> showSeats;
     @Enumerated(EnumType.STRING)
     private BookingStatus bookingStatus;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
+
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
+    }
+
+    public Show getShow() {
+        return show;
+    }
+
+    public void setShow(Show show) {
+        this.show = show;
+    }
+
+    public List<ShowSeat> getShowSeats() {
+        return showSeats;
+    }
+
+    public void setShowSeats(List<ShowSeat> showSeats) {
+        this.showSeats = showSeats;
+    }
+
+    public BookingStatus getBookingStatus() {
+        return bookingStatus;
+    }
+
+    public void setBookingStatus(BookingStatus bookingStatus) {
+        this.bookingStatus = bookingStatus;
+    }
 }
 // Booking : id, createdAt, updatedAt, amount, user_id
 // b1, cat, uat, 1000, uid1

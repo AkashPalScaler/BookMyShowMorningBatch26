@@ -22,6 +22,46 @@ public class ShowSeat extends BaseModel {
     @ManyToOne
     private Booking booking;
     private Date blockedAt;
+
+    public Show getShow() {
+        return show;
+    }
+
+    public void setShow(Show show) {
+        this.show = show;
+    }
+
+    public Seat getSeat() {
+        return seat;
+    }
+
+    public void setSeat(Seat seat) {
+        this.seat = seat;
+    }
+
+    public ShowSeatStatus getShowSeatStatus() {
+        return showSeatStatus;
+    }
+
+    public void setShowSeatStatus(ShowSeatStatus showSeatStatus) {
+        this.showSeatStatus = showSeatStatus;
+    }
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
+
+    public Date getBlockedAt() {
+        return blockedAt;
+    }
+
+    public void setBlockedAt(Date blockedAt) {
+        this.blockedAt = blockedAt;
+    }
 }
 
 
